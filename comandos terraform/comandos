@@ -1,0 +1,124 @@
+COMANDOS TERRAFORM: para comentar todo Ctrl + K luego Ctrl + C
+
+ruta de la carpeta: cd /c/Users/simpl/workspace/
+-------------------------------------------------------------------------------
+terraform init                                  
+# Para descargar las dependencias del provider service (proveedor de servicio)
+
+terraform plan                                  
+# Para ver las creaciones y modificaciones respecto a los recursos.
+
+terraform apply                                 
+# Para poder ejecutar los cambios y creaciones en ese momento.
+
+terraform destroy                               
+# Para poder eliminar los archivos o recursos creados.
+
+terraform show                                  
+# Para poder ver el estado actual de los recursos desplegados.
+
+export TF_VAR_nombre_de_la_variable="valor"       
+# Para colocar un valor a la variable.
+
+unset TF_VAR_nombre_de_la_variable
+# Para eliminar la variable definida.
+
+env | grep TF                                   
+# Para ver el valor de todas las variables.
+
+terraform apply -auto-approve                   
+# Para ejecutar un apply sin validacion yes.
+
+terraform validate                                  
+# Para validar la sintaxis del template.
+
+terraform output "nombre de la salida"          
+# Para ver el valor de la saida.
+
+terraform apply -target "tipo_del_recurso.nombre_del_recurso"    
+# Solo aplicara cambios al recurso indicado.
+
+terraform destroy -target "tipo_del_recurso.nombre_del_recurso"
+# Se utiliza para destuir al recurso indicado. 
+
+terraform plan -target "tipo_del_recurso.nombre_del_recurso"     
+# Solo mostrara el plan del servicio indicado.
+
+less terraform.tfstate                          
+# Se utiliza para ver el contenido del archivo de estado de Terraform (terraform.tfstate)
+
+terraform fmt                                   
+# Este comando ajusta la sangría, los espacios en blanco y el formato.
+
+terraform providers                             
+# Muestra los proveedores que se estan ejecutando.
+
+terraform refresh                               
+# Se utiliza para actualizar el estado de Terraform para que coincida con la infraestructura actual. Terraform utiliza el estado para realizar un seguimiento de los recursos que ha creado y gestionado.
+
+terraform state list                            
+# Se utiliza para listar todos los recursos que están registrados en el estado de Terraform.
+
+terraform state show "tipo_del_recurso.nombre_del_recurso"    
+# Se utiliza para mostrar información detallada sobre un recurso específico en el estado de Terraform (tf.state).
+
+terraform state mv "tipo_del_recurso.nombre_del_recurso" "tipo_del_recurso.nombre_del_nuevo_recurso"  
+# Se utiliza para cambiar el nombre o la ruta del recurso en el estado de Terraform. También se puede utilizar para mover un recurso de un tipo a otro, o cambiar el nombre del recurso.
+
+terraform state rm "tipo_del_recurso.nombre_del_recurso"         
+# Se utiliza para eliminar un recurso específico del estado de Terraform (tf.state). Necesitas proporcionar el nombre completo del recurso, incluyendo su tipo y nombre.
+
+rm -rf terraform.tfstate*                       
+# Eliminar de manera recursiva y forzada todos los archivos que comienzan con "terraform.tfstate".
+
+terraform taint "tipo_del_recurso.nombre_del_recurso"            
+# Si esta corrupto, permite recrear el recurso en la proxima ejecucion sin cambiar la configuracion.
+
+terraform untaint "tipo_del_recurso.nombre_del_recurso"          
+# Se utiliza para quitar la marca de "tainted" (manchado) de un recurso en el estado de Terraform. La marca de manchado indica que un recurso ha sido marcado para ser recreado en la próxima ejecución de terraform apply. Al quitar la marca de manchado, indicas a Terraform que no es necesario recrear ese recurso.
+
+terraform apply -replace "tipo_del_recurso.nombre_del_recurso"   
+# Se utiliza para forzar la recreación de un recurso específico durante la aplicación de cambios.Este comando indica a Terraform que debe recrear el recurso seleccionado, incluso si n
+o ha cambiado en la configuración.
+
+export TF_LOG=TRACE                             
+# Muestra el historico de los logs (luego dar terraform plan).
+
+export TF_LOG_PATH="logs.txt"                   
+# Se utiliza para especificar el archivo en el que se deben escribir los registros generados por Terraform en el archivo.
+
+terraform import "nombre del recurso aws.nombre del recurso" "id del recurso"          
+# Se utiliza para importar recursos existentes en tu infraestructura a la configuración de Terraform.
+
+terraform console
+# Abre la consola de terraform.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Link descargar el tfsec:
+------------------------
+https://github.com/aquasecurity/tfsec
+
+# Para realizar las comprobaciones de seguridad:
+# ubicarse en la misma ruta y ejecutar:
+
+tfsec
+
+# Para ontener el costo de los servicios desplegados por terraform:
+
+infracost breakdown --path .
+
+# Mas detalles:
+
+infracost breakdown --path . --show-skipped
